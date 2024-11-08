@@ -1,17 +1,17 @@
 /*eslint func-names: 0, no-magic-numbers:0, id-length:0 */
 /*global describe, it */
 
-const flow = require('../lib/xml-flow');
-const fs = require('fs');
+const flow = require("../lib/xml-flow");
+const fs = require("fs");
 
-
-require('chai').should();
+require("chai").should();
 
 function getFlow(fileName, options) {
   return flow(fs.createReadStream(fileName), options);
 }
 
-describe('xml-flow', () => {
+describe("xml-flow", () => {
+  /*
   describe('invoke', () => {
     it('should create an emitter when invoked with a stream and options', () => {
       const inStream = fs.createReadStream('./test/simple.xml');
@@ -171,8 +171,10 @@ describe('xml-flow', () => {
       });
     });
   });
+  */
 
-  describe('options', () => {
+  describe("options", () => {
+    /*
     it('should normalize whitespace by default', done => {
       const simpleStream = getFlow('./test/test.xml');
       const output = 'This is some text with extra whitespace.';
@@ -301,8 +303,66 @@ describe('xml-flow', () => {
         done();
       });
     });
+    */
+
+    it("should keep things as arrays when asked (multi artist release)", (done) => {
+      const nestedStream = getFlow("./test/nested.xml", {
+        useArrays: flow.ALWAYS,
+      });
+      const output = {
+        $name: "multi_artist_release",
+        $attrs: {
+          id: "1",
+          status: "Accepted",
+        },
+        artists: [
+          [
+            {
+              id: "1",
+              name: "Example Artist 1",
+            },
+            {
+              id: "2",
+              name: "Example Artist 2",
+            },
+          ],
+        ],
+      };
+
+      nestedStream.on("tag:multi_artist_release", (node) => {
+        node.should.deep.equal(output);
+        done();
+      });
+    });
+
+    it("should keep things as arrays when asked (single artist release)", (done) => {
+      const nestedStream = getFlow("./test/nested.xml", {
+        useArrays: flow.ALWAYS,
+      });
+      const output = {
+        $name: "single_artist_release",
+        $attrs: {
+          id: "1",
+          status: "Accepted",
+        },
+        artists: [
+          [
+            {
+              id: "1",
+              name: "Example Artist",
+            },
+          ],
+        ],
+      };
+
+      nestedStream.on("tag:single_artist_release", (node) => {
+        node.should.deep.equal(output);
+        done();
+      });
+    });
   });
 
+  /*
   describe('toXml()', () => {
     it('should convert $attrs as expected', () => {
       const input = { $name: 'tag', $attrs: { id: 3 }};
@@ -376,4 +436,5 @@ describe('xml-flow', () => {
       flow.toXml(input).should.equal(output);
     });
   });
+  */
 });

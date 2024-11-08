@@ -1,6 +1,6 @@
 {
   "extends": "eslint:recommended",
-  "plugins": [ "mocha" ],
+  "plugins": ["mocha"],
   "env": {
     "es6": true,
     "node": true
@@ -15,10 +15,10 @@
     "mocha/handle-done-callback": 2,
     "mocha/no-return-and-callback": 2,
 
-    "complexity": [1, {"max": 9}],
+    "complexity": [1, { "max": 9 }],
     "eqeqeq": [1, "smart"],
     "implicit-arrow-linebreak": 1,
-    "no-console": [2, { "allow": ["warn", "error"]}],
+    "no-console": 0,
     "no-const-assign": 2,
     "no-eq-null": 0,
     "no-useless-escape": 0,
@@ -30,9 +30,9 @@
     "no-useless-return": 2,
 
     "arrow-body-style": 1,
-    "arrow-parens": [1, "as-needed"],
+    "arrow-parens": 1,
     "arrow-spacing": 2,
-    "no-confusing-arrow": [2, { "allowParens": true }],
+    "no-confusing-arrow": 0,
     "no-duplicate-imports": 2,
     "no-useless-computed-key": 2,
     "no-useless-constructor": 2,
@@ -48,7 +48,7 @@
     "rest-spread-spacing": 2,
     "template-curly-spacing": 2,
 
-    "array-bracket-spacing": [1, "always", { "arraysInArrays": false, "objectsInArrays": false }],
+    "array-bracket-spacing": 0,
     "block-spacing": 1,
     "brace-style": [1, "1tbs", { "allowSingleLine": true }],
     "camelcase": 1,
@@ -75,12 +75,16 @@
     "no-underscore-dangle": 1,
     "no-unneeded-ternary": 1,
     "no-whitespace-before-property": 1,
-    "nonblock-statement-body-position": 1,
+    "nonblock-statement-body-position": 0,
     "object-curly-newline": [1, { "consistent": true }],
-    "object-curly-spacing": [1, "always", { "arraysInObjects": false, "objectsInObjects": false }],
-    "operator-linebreak": [ 1, "before" ],
+    "object-curly-spacing": [
+      1,
+      "always",
+      { "arraysInObjects": false, "objectsInObjects": false }
+    ],
+    "operator-linebreak": [1, "before"],
     "quote-props": [1, "as-needed"],
-    "quotes": [1, "single", { "avoidEscape": true }],
+    "quotes": [1, "double", { "avoidEscape": true }],
     "semi": 1,
     "semi-spacing": 1,
     "space-before-blocks": 1,
@@ -88,6 +92,7 @@
     "space-in-parens": 1,
     "space-infix-ops": 1,
     "space-unary-ops": 1,
-    "switch-colon-spacing": 1
+    "switch-colon-spacing": 1,
+    "no-unused-vars": 1
   }
 }
